@@ -8,8 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "node ./ng-add-pug-loader.js"
+    "postinstall": "node ./ng-add-pug-loader.js",
+    "deploy": "gh-pages -d dist"
   },
+  "homepage": "https://krisztian-kugler.github.io/quince-angular",
   "private": true,
   "dependencies": {
     "@angular/animations": "~7.0.0",
@@ -22,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "core-js": "^2.5.4",
+    "gh-pages": "^2.0.1",
     "ng-cli-pug-loader": "^0.1.7",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
