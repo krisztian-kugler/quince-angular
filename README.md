@@ -1,6 +1,6 @@
 # Quince Angular
 
-## Live version: https://krisztian-kugler.github.io/quince-angular/
+Live version: https://krisztian-kugler.github.io/quince-angular/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
