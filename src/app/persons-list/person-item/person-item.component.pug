@@ -1,0 +1,9 @@
+.cell.name-job
+  .name {{ person.name }}
+  .job {{ person.job }}
+.cell.age {{ person.age }}
+.cell.nickname {{ person.nick }}
+.cell.employee
+  .checkbox((click)="toggleCheckbox()")
+    .check(*ngIf="person.employee")
+.cell.delete((click)="deletePerson()") Delete

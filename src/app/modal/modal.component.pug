@@ -1,0 +1,21 @@
+.wrapper
+  .input.name
+    label Name
+    input(type="text", #nameInput)
+  .input.job-title
+    label Job title
+    input(type="text", #jobInput)
+  .input.age
+    label Age
+    input(type="text", #ageInput)
+  .input.nickname
+    label Nickname
+    input(type="text", #nicknameInput)
+  .input.employee
+    label Employee
+    .checkbox((click)="toggleCheckbox()")
+      .check(*ngIf="isEmployee")
+  .divider
+  .button-bar
+    button.btn.ok((click)="submitPerson()") OK
+    button.btn.cancel((click)="destroy.emit()") Cancel
