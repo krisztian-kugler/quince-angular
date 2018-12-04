@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { EventBus } from 'src/app/shared/eventbus.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { EventBus } from 'src/app/shared/eventbus.service';
   templateUrl: './person-item.component.pug',
   styleUrls: ['./person-item.component.sass']
 })
-export class PersonItemComponent implements OnInit {
+export class PersonItemComponent {
 
   constructor(private eventBus: EventBus) { }
 
@@ -16,13 +16,11 @@ export class PersonItemComponent implements OnInit {
 
   toggleCheckbox(): void {
     this.person.employee = !this.person.employee;
-    this.eventBus.updateDataDump.next(this.person);
+    this.eventBus.updateDataDump.next();
   }
 
   deletePerson(): void {
     this.delete.emit(this.id);
   }
-
-  ngOnInit() {}
 
 }

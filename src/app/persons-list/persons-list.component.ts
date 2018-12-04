@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../shared/http.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { EventBus } from '../shared/eventbus.service';
 
 @Component({
@@ -9,19 +8,16 @@ import { EventBus } from '../shared/eventbus.service';
 })
 export class PersonsListComponent implements OnInit {
 
-  constructor(private httpService: HttpService, private eventBus: EventBus) { }
+  constructor(private eventBus: EventBus) { }
 
-  persons: Person[] = [];
+  @Input() persons: Person[];
 
   onDelete(i: number): void {
-    let deletedPerson = this.persons.splice(i, 1);
-    this.eventBus.updateDataDump.next(...deletedPerson);
+    this.persons.splice(i, 1);
+    this.eventBus.updateDataDump.next();
   }
 
   ngOnInit(): void {
-    this.httpService.getPersons().subscribe((persons: Person[]) => {
-      this.persons = persons;
-    })
     this.eventBus.addPerson.subscribe((newPerson: Person) => {
       this.persons.push(newPerson);
     })

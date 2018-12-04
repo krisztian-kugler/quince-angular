@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventBus } from './shared/eventbus.service';
+import { HttpService } from './shared/http.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,12 @@ import { EventBus } from './shared/eventbus.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private eventBus: EventBus) {}
+  constructor(
+    private eventBus: EventBus,
+    private httpService: HttpService
+  ) {}
   
+  persons: Person[] = [];
   displayModal: boolean = false;
   dataDump: string = "";
   updatedClass: boolean = false;
@@ -26,10 +31,21 @@ export class AppComponent implements OnInit {
     }, 100);
   }
 
+  updateDataDump(): void {
+    let data: string = "";
+    this.persons.forEach((person: Person, i: number) => {
+      data += `{\n  "name": "${person.name}",\n  "job": "${person.job}",\n  "age": "${person.age}",\n  "nick": "${person.nick}",\n  "employee": ${person.employee}\n}${i === this.persons.length - 1 ? "" : ","}\n`
+    })
+    this.dataDump = data;
+    this.updated();
+  }
+
   ngOnInit(): void {
-    this.eventBus.updateDataDump.subscribe((person: Person) => {
-      this.dataDump = `{name: ${person.name}, job: ${person.job}, age: ${person.age}, nick: ${person.nick}, employee: ${person.employee}}`;
-      this.updated();
+    this.httpService.getPersons().subscribe((persons: Person[]) => {
+      this.persons = persons;
+    })
+    this.eventBus.updateDataDump.subscribe(() => {
+      this.updateDataDump();
     })
   }
 

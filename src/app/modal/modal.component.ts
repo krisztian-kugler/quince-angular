@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { EventBus } from '../shared/eventbus.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { EventBus } from '../shared/eventbus.service';
   templateUrl: './modal.component.pug',
   styleUrls: ['./modal.component.sass']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
 
   constructor(private eventBus: EventBus) { }
 
@@ -19,22 +19,19 @@ export class ModalComponent implements OnInit {
 
   submitPerson(): void {
     const newPerson: Person = {
-      name: this.nameInput.nativeElement.value,
-      job: this.jobInput.nativeElement.value,
-      age: this.ageInput.nativeElement.value,
-      nick: this.nicknameInput.nativeElement.value,
-      employee: this.isEmployee
+      name: <string>this.nameInput.nativeElement.value,
+      job: <string>this.jobInput.nativeElement.value,
+      age: <string>this.ageInput.nativeElement.value,
+      nick: <string>this.nicknameInput.nativeElement.value,
+      employee: <boolean>this.isEmployee
     }
-    this.eventBus.addPerson.next(newPerson);
-    this.eventBus.updateDataDump.next(newPerson);
+    this.eventBus.addPerson.next(newPerson as Person);
+    this.eventBus.updateDataDump.next();
     this.destroy.emit();
   }
 
   toggleCheckbox(): void {
     this.isEmployee = !this.isEmployee;
-  }
-
-  ngOnInit() {
   }
 
 }

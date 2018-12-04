@@ -11,7 +11,7 @@ main
       .cell.nickname Nickname
       .cell.employee Employee
       .cell.delete
-    app-persons-list
+    app-persons-list([persons]="persons")
     p.data-dump Data dump:
     textarea([ngClass]="{updated: updatedClass}", [value]="dataDump", (keypress)="$event.preventDefault()")
   app-modal(*ngIf="displayModal", (destroy)="displayModal = false")
