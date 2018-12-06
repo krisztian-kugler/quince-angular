@@ -1,21 +1,21 @@
 .wrapper
   .input.name
     label Name
-    input(type="text", #nameInput)
+    input(type="text", placeholder="Name (At least 3 characters)", #nameInput (input)="nameInput.value.length >= 3 ? enableSubmit = true : enableSubmit = false")
   .input.job-title
     label Job title
-    input(type="text", #jobInput)
+    input(type="text", placeholder="Job", #jobInput)
   .input.age
     label Age
-    input(type="text", #ageInput)
+    input(type="text", placeholder="Age", #ageInput)
   .input.nickname
     label Nickname
-    input(type="text", #nicknameInput)
+    input(type="text", placeholder="Nickname", #nicknameInput)
   .input.employee
     label Employee
     .checkbox((click)="toggleCheckbox()")
       .check(*ngIf="isEmployee")
   .divider
   .button-bar
-    button.btn.ok((click)="submitPerson()") OK
+    button.btn.ok((click)="submitPerson()", [ngClass]="{disabled: !enableSubmit}") OK
     button.btn.cancel((click)="destroy.emit()") Cancel

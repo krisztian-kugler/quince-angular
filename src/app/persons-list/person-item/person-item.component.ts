@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventBus } from 'src/app/shared/eventbus.service';
 
 @Component({
@@ -12,7 +12,6 @@ export class PersonItemComponent {
 
   @Input() id: number;
   @Input() person: Person;
-  @Output() delete = new EventEmitter<number>(); 
 
   toggleCheckbox(): void {
     this.person.employee = !this.person.employee;
@@ -20,7 +19,7 @@ export class PersonItemComponent {
   }
 
   deletePerson(): void {
-    this.delete.emit(this.id);
+    this.eventBus.deletePerson.next(this.id);
   }
 
 }

@@ -10,6 +10,7 @@ export class ModalComponent {
 
   constructor(private eventBus: EventBus) { }
 
+  enableSubmit: boolean = false;
   isEmployee: boolean = false;
   @Output() destroy = new EventEmitter<void>();
   @ViewChild("nameInput") nameInput: ElementRef;
@@ -18,6 +19,9 @@ export class ModalComponent {
   @ViewChild("nicknameInput") nicknameInput: ElementRef;
 
   submitPerson(): void {
+    if (!this.enableSubmit) {
+      return;
+    }
     const newPerson: Person = {
       name: <string>this.nameInput.nativeElement.value,
       job: <string>this.jobInput.nativeElement.value,

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 export class EventBus {
 
   addPerson = new Subject<Person>();
+  deletePerson = new Subject<number>();
   updateDataDump = new Subject<Person[]>();
 
 }

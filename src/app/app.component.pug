@@ -6,7 +6,8 @@ main
   .wrapper
     button.btn-add((click)="displayModal = true") Add
     .list-header
-      .cell.name-job Name / Job
+      .cell.name-job((click)="sort($event)") Name / Job
+        .arrow([innerHTML]="arrow")
       .cell.age Age
       .cell.nickname Nickname
       .cell.employee Employee

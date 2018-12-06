@@ -8,6 +8,7 @@ import { HttpService } from './shared/http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonItemComponent } from './persons-list/person-item/person-item.component';
 import { EventBus } from './shared/eventbus.service';
+import { SortService } from './shared/sort.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EventBus } from './shared/eventbus.service';
   ],
   providers: [
     HttpService,
-    EventBus
+    EventBus,
+    SortService
   ],
   bootstrap: [AppComponent]
 })
